@@ -23,23 +23,29 @@ sort([]); // []
 
 function sort(nums, sorted = []) {
 
-   if (nums.length === 0) return sorted;
+ if (nums.length === 0) return sorted;
 
-   let smallest = Math.min(...nums)
-   let smallestIndex = nums.indexOf(smallest)
+//    let smallest = Math.min(...nums)
+//    let smallestIndex = nums.indexOf(smallest)
 
-   sorted.push(smallest)
-   nums.splice(smallestIndex, 1)
+//    sorted.push(smallest)
+//    nums.splice(smallestIndex, 1)
 
-   return sort(nums, sorted)
+//    return sort(nums, sorted)
+    let min = 0
 
+    for(let index = 1; index < nums.length; index++){
+        let num = nums[index]
 
-    // for(let i = 1; i < nums.length; i++){
-    //     let num = nums[i]
-    //     if(num < nums[0]) sorted.push(num)
-    //     else sorted.push(sort(nums[0], sorted))
-    // }
-    //return sorted
+        if(num < nums[min]) {
+            min = index
+
+        }
+    }
+    sorted.push(nums[min])
+    nums.splice(min, 1)
+
+    return sort(nums, sorted)
 }
 console.log(sort([4,1,6,3,1,7]))
 console.log(sort([]))
